@@ -1,0 +1,316 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+$scanlines: repeating-linear-gradient(
+                0deg,
+                rgba(black, 0.2),
+                rgba(black, 0.2) 1px,
+                transparent 1px,
+                transparent 2px
+);
+body {
+  font-family: 'Press Start 2P', Arial, sans-serif;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  background: #03081a;
+  position: relative;
+
+  &.mode2 {
+    #credits {
+      perspective: 200px;
+    }
+  }
+
+  &.scanlines {
+    #container {
+      position: relative;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: $scanlines
+      }
+
+      #ui {
+        //filter: blur(0.03em);
+        text-shadow: 0 0 0.4em rgba(255, 255, 255, 0.7);
+      }
+
+      #title {
+        filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.26)) blur(1px);
+      }
+    }
+
+    #intro {
+      filter: blur(0.8px);
+    }
+  }
+
+  #loading {
+    display: none;
+    text-align: center;
+    color: #fff;
+    position: absolute;
+    top: 46%;
+    font-size: 1.7vh;
+    line-height: 1.5;
+    width: 300px;
+    max-width: 100%;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    left: 50%;
+    transform: translateX(-50%);
+    @media(min-width: 1350px) {
+      font-size: 22px;
+    }
+
+    &.active {
+      display: block
+    }
+  }
+
+  #intro {
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    position: absolute;
+    top: 46%;
+    font-size: 1.7vh;
+    @media(min-width: 1350px) {
+      font-size: 22px;
+    }
+
+    line-height: 1.5;
+    display: none;
+
+    &.active {
+      display: block;
+    }
+
+    button {
+      margin-top: 1.5em;
+      font: inherit;
+      background: transparent;
+      color: #0f0;
+      border: 2px solid #0f0;
+      padding: 10px 10px 8px;
+      position: relative;
+      font-size: 1.2em;
+    }
+
+    select {
+      font: inherit;
+      background: transparent;
+      color: #99f;
+      border: none;
+      border-bottom: 2px solid #99f;
+      padding: 5px 0;
+      position: relative;
+
+      option {
+        background: #000;
+        color: #fff;
+        position: relative;
+      }
+    }
+  }
+}
+
+canvas {
+  width: 100%;
+  height: 100vh;
+}
+
+#ui {
+  font-size: 1.7vh;
+  @media(min-width: 1350px) {
+    font-size: 22px;
+  }
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+
+  #game-ui {
+    display: none;
+
+    &.active {
+      display: block;
+    }
+  }
+
+  #panel-score {
+    position: absolute;
+    top: 20px;
+    left: calc(50% - 450px);
+    transform: translate(-50%);
+  }
+
+  #panel-level {
+    position: absolute;
+    top: 20px;
+    left: calc(50% - 150px);
+    transform: translate(-50%);
+  }
+
+  #panel-lives {
+    position: absolute;
+    top: 20px;
+    right: calc(50% - 150px);
+    transform: translate(50%);
+  }
+
+  #panel-highscore {
+    position: absolute;
+    top: 20px;
+    right: calc(50% - 450px);
+    transform: translate(50%);
+  }
+
+  #panel-game-over {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0.2);
+    opacity: 0;
+    font-size: 1.1em;
+    border: 6px solid #fff;
+    padding: 1em;
+    transition: none;
+    text-align: center;
+
+    &.active {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 9;
+      transition: all ease 1s;
+    }
+  }
+
+  #panel-press-any-key {
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, 140px);
+    text-align: center;
+
+    &.active {
+      display: block;
+    }
+  }
+
+  #panel-new-highscore {
+    display: none;
+    position: absolute;
+    color: #ffff00;
+    left: 50%;
+    top: 35%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+
+    &.active {
+      display: block;
+    }
+
+    .value {
+      color: #f00;
+      padding-top: 1em;
+    }
+  }
+
+  $shadowColor: #000;
+
+  #title-screen {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-size: 1.7vh;
+    @media(min-width: 1350px) {
+      font-size: 24px;
+    }
+    display: none;
+    line-height: 1.6;
+
+    &.active {
+      display: block;
+    }
+
+    #portrait-warning {
+      color: #f00;
+      padding-top: 1em;
+      display: none;
+      @media all and (orientation: portrait) {
+        display: block;
+      }
+    }
+
+    #title {
+      position: absolute;
+      top: 30%;
+      width: 100%;
+      text-align: center;
+      font-size: 6vh;
+      @media(min-width: 1350px) {
+        font-size: 75px;
+      }
+      color: #ff0;
+      line-height: 1.05;
+      text-shadow: 0 0.05em $shadowColor, 0 -0.05em $shadowColor, 0.05em 0 $shadowColor, -0.05em 0 $shadowColor,
+      0.05em 0.05em $shadowColor, 0.05em -0.05em $shadowColor, 0.05em -0.05em $shadowColor, -0.05em -0.05em $shadowColor;
+      perspective: 3em;
+      perspective-origin: top;
+
+      .layer {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        transform-origin: bottom;
+      }
+
+      .layer3 {
+        transform: rotateX(-17deg) scaleY(2);
+      }
+
+      .layer2 {
+        $shadowcolor-l1: #c00;
+        color: $shadowcolor-l1;
+        text-shadow: 0 0.02em $shadowcolor-l1, 0 -0.02em $shadowcolor-l1, 0.02em 0 $shadowcolor-l1, -0.02em 0 $shadowcolor-l1,
+        0.02em 0.02em $shadowcolor-l1, 0.02em -0.02em $shadowcolor-l1, 0.02em -0.02em $shadowcolor-l1, -0.02em -0.02em $shadowcolor-l1;
+        transform: rotateX(-17deg) scaleY(2) translateZ(-0.1em) translateY(-0.12em);
+      }
+
+      .layer1 {
+        $shadowcolor-l2: #000;
+        color: $shadowcolor-l2;
+        text-shadow: 0 0.05em $shadowcolor-l2, 0 -0.05em $shadowcolor-l2, 0.05em 0 $shadowcolor-l2, -0.05em 0 $shadowcolor-l2,
+        0.05em 0.05em $shadowcolor-l2, 0.05em -0.05em $shadowcolor-l2, 0.05em -0.05em $shadowcolor-l2, -0.05em -0.05em $shadowcolor-l2;
+        transform: rotateX(-17deg) scaleY(2) translateZ(-0.2em) translateY(-0.2em);
+      }
+    }
+
+    #credits {
+      font-size: 0.9em;
+      position: absolute;
+      bottom: 20px;
+      padding: 0 2em;
+      width: 100%;
+      box-sizing: border-box;
+
+      & > div {
+        transform: rotateX(20deg);
+      }
+    }
+  }
+}
+

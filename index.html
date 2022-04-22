@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Space Invaders - Babylon Project</title>
+  <link rel="stylesheet" href="./assets/style.scss">
+</head>
+<body>
+<div id="container">
+  <canvas width="1920" height="1080"></canvas>
+  <div id="ui">
+    <div id="title-screen" class="active">
+      <div id="title">
+        <div class="layer layer1">
+          SPACE<br/>INVADERS
+        </div>
+        <div class="layer layer2">
+          SPACE<br/>INVADERS
+        </div>
+        <div class="layer layer3">
+          SPACE<br/>INVADERS
+        </div>
+      </div>
+      <div id="portrait-warning">Best played in landscape.<br/>Please turn your device :)</div>
+      <div id="credits">
+        <div>
+          <p>------</p>
+          <p>Arrow keys to move <br />Shift to shoot </p>
+          <p>------</p>
+          <p>2022 by John Pitchers</p>
+          <p>Built with BabylonJS. 3D models created in Blender. Sound effects by Juhani Junkala - https://juhanijunkala.com/ </p>
+        </div>
+      </div>
+    </div>
+    <div id="game-ui" class="">
+      <div id="panel-score">
+        <span class="label">SCORE:</span><span class="value">0</span>
+      </div>
+      <div id="panel-level">
+        <span class="label">LEVEL:</span><span class="value">1</span>
+      </div>
+      <div id="panel-lives">
+        <span class="label">LIVES:</span><span class="value">0</span>
+      </div>
+      <div id="panel-highscore">
+        <span class="label">HIGH:</span><span class="value">0</span>
+      </div>
+      <div id="panel-game-over" class="">
+        GAME OVER
+      </div>
+      <div id="panel-press-any-key" class="">
+        PRESS ANY KEY TO CONTINUE
+      </div>
+      <div id="panel-new-highscore" class="">
+        **** NEW HIGH SCORE ****<br>
+        <div class="value">0</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="loading" class="active">LOADING<br />...</div>
+<div id="intro" class="">
+  <p>Select mode<br/><select id="change-mode">
+    <option value="0">Traditional 2D</option>
+    <option value="1">2D oldschool CRT</option>
+    <option value="2">Action cam 3D</option>
+  </select></p>
+  <p>
+    <button id="start-game">START GAME</button>
+  </p>
+</div>
+<script type="module" src="./main.js"></script>
+<script>
+  loading();
+  function loading() {
+    setTimeout(function(){
+      let el =document.querySelector("#loading")
+      el.append(".");
+      if (el.classList.contains("active")) {
+        loading();
+      }
+    },1000);
+  }
+</script>
+</body>
+</html>
