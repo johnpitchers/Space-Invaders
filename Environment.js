@@ -69,14 +69,12 @@ export class Environment {
   }
 
   CreateCamera() {
+    let camera;
     if (spaceinvadersConfig.actionCam) {
-      var camera = new UniversalCamera("camera", new Vector3(0, -60, -60), this.scene);
+      camera = new UniversalCamera("camera", new Vector3(0, -60, -60), this.scene);
     } else {
-      var camera = new UniversalCamera("camera", new Vector3(0, 50, -150), this.scene);
-      //const camera = new ArcRotateCamera('camera', -Math.PI / 2, Math.PI / 2.5, 50, new Vector3(0,0,0), this.scene);
-      //const camera = new UniversalCamera("camera", new Vector3(0, -40, -100), this.scene);
+      camera = new UniversalCamera("camera", new Vector3(0, 50, -150), this.scene);
     }
-    //camera.attachControl(this.canvas, true);
     camera.setTarget(new Vector3(0, 50, 0));
     return camera;
   }

@@ -77,13 +77,4 @@ export class Alien extends AliensController {
       this.mesh.collider.collidedMesh.dispose(); // perform action with meshes onDispose event.
     }
   }
-
-  getDelta() {
-    let targetFps = 60;
-    let fps = 1000 / this.scene.deltaTime;
-    let delta = targetFps / fps;
-    if (delta === 0) delta = 1;
-    if (delta > 50) delta = 1;
-    return delta;
-  }
 }

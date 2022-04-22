@@ -230,7 +230,6 @@ export class AlienFormationController {
     // Fire rate increases every level by a multiple;
     const fireRateIncreaseMultiple = 1.2;
     levelParams.fireRate = this.defaultParams.fireRate * Math.pow(fireRateIncreaseMultiple, State.level - 1);
-    //levelParams.fireRate = 0;
 
     // Increase the number of barriers;
     // Additional barrier every 2 levels
@@ -252,7 +251,7 @@ export class AlienFormationController {
       if (levelParams.alien2Lives > maxAlienLives) levelParams.alien2Lives = maxAlienLives;
     }
 
-    //this.motherShip.interval = 5;
+    // Motherships spawn faster at higher levels.
     this.motherShip.interval = spaceinvadersConfig.motherShip.interval - (State.level / 2);
     this.motherShip.fireRate = 2 + (State.level / 3);
 
