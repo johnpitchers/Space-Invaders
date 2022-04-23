@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
-  <link rel="icon" type="image/svg+xml" href="./favicon.svg"/>
+  <link rel="icon" type="image/svg+xml" href="src/favicon.svg"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Space Invaders - Babylon Project</title>
   <link rel="stylesheet" href="./assets/style.scss">
@@ -27,7 +27,7 @@
       <div id="credits">
         <div>
           <p>------</p>
-          <p>Arrow keys to move <br />Shift to shoot </p>
+          <p>Arrow keys to move <br/>Shift to shoot </p>
           <p>------</p>
           <p>2022 by John Pitchers</p>
           <p>Built with BabylonJS. 3D models created in Blender. Sound effects by Juhani Junkala - https://juhanijunkala.com/ </p>
@@ -65,7 +65,7 @@
     </div>
   </div>
 </div>
-<div id="loading" class="active">LOADING<br />...</div>
+<div id="loading" class="active">LOADING<br/>...</div>
 <div id="intro" class="">
   <p>Select mode<br/><select id="change-mode">
     <option value="0">Traditional 2D</option>
@@ -76,17 +76,18 @@
     <button id="start-game">START GAME</button>
   </p>
 </div>
-<script type="module" src="./main.js"></script>
+<script type="module" src="./script.js"></script>
 <script>
   loading();
+
   function loading() {
-    setTimeout(function(){
-      let el =document.querySelector("#loading")
+    setTimeout(function () {
+      let el = document.querySelector("#loading")
       el.append(".");
       if (el.classList.contains("active")) {
         loading();
       }
-    },1000);
+    }, 1000);
   }
 </script>
 </body>
