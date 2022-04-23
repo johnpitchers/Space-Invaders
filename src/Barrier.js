@@ -1,6 +1,6 @@
 import {Color3, MeshBuilder, Scalar, StandardMaterial, Vector3} from "@babylonjs/core";
 import {Explosion} from "./Explosion";
-import State from "./State";
+import State from "../State";
 
 export class Barrier {
 

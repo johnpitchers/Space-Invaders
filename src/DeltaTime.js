@@ -3,7 +3,7 @@
 // experience. FPS and delta is written to the State
 // every frame.
 
-import State from "./State";
+import State from "../State";
 
 export class DeltaTime {
   lastRenderTime = 0;

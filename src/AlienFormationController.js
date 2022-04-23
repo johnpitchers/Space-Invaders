@@ -1,12 +1,12 @@
 import {AliensController} from "./AliensController";
 import {Alien} from "./Alien";
 import {Axis, Scalar, Space, Vector3} from "@babylonjs/core";
-import State from "./State";
+import State from "../State";
 import {AlienBullet} from "./AlienBullet";
 import {Barrier} from "./Barrier";
 import {Explosion} from "./Explosion";
 import {MotherShip} from "./MotherShip";
-import spaceinvadersConfig from "./spaceinvaders.config";
+import spaceinvadersConfig from "../spaceinvaders.config";
 
 export class AlienFormationController {
 

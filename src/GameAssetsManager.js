@@ -140,7 +140,6 @@ export class GameAssetsManager {
   }
 
   checkComplete() {
-    console.log(this.assetsLoaded);
     if (this.assetsLoaded > this.totalAssetsToLoad - 1) {
       // Must call removeAllFromSceneon next tick for some reason
       setTimeout(() => {

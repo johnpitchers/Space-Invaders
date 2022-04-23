@@ -2,7 +2,9 @@ import {Scalar, Vector3} from "@babylonjs/core";
 import {PlayerBullet} from "./PlayerBullet";
 import {InputController} from "./InputController";
 import {Explosion} from "./Explosion";
-import State from "./State";
+import {MobileInputs} from "./MobileInputs";
+
+import State from "../State";
 
 export class PlayerController {
 
@@ -12,6 +14,7 @@ export class PlayerController {
     this.gameAssets = gameAssets;
     this.movementEnabled = false;
     this.inputController = new InputController(this.scene);
+    this.mobileInputs = new MobileInputs();
     this.bullets = [];
     this.maxBullets = 50;
     this.momentum = 0;
@@ -135,13 +138,13 @@ export class PlayerController {
       }
     }
     let input = this.inputController.inputMap;
-    if (input.arrowleft || input.a) {
+    if (input.arrowleft || input.a || this.mobileInputs.left) {
       this.playerMoveLeft(State.delta);
     }
-    if (input.arrowright || input.d) {
+    if (input.arrowright || input.d || this.mobileInputs.right) {
       this.playerMoveRight(State.delta);
     }
-    if (input.shift || input.enter|| input.space) {
+    if (input.shift || input.enter|| input.space || this.mobileInputs.fire ) {
       if (!this.fireKeyDown && this.bullets.length < this.maxBullets && this.movementEnabled) {
         this.bullets.push(new PlayerBullet(this.gameAssets,this.scene, this.playerMesh));
         this.gameAssets.sounds.lazer.play();

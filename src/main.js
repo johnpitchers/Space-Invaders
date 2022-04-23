@@ -1,14 +1,15 @@
-import spaceinvadersConfig from "./spaceinvaders.config";
+import spaceinvadersConfig from "../spaceinvaders.config";
 parseSelectedMode();
 import {Engine} from "@babylonjs/core";
 import {Environment} from "./Environment";
-import State from "./State";
+import State from "../State";
 import {DeltaTime} from "./DeltaTime";
 import {GameController} from "./GameController";
 import {InputController} from "./InputController";
 import {GameAssetsManager} from "./GameAssetsManager";
 import {Starfield} from "./Starfield";
 import {UIText} from "./UIText";
+import {MobileInputs} from "./MobileInputs";
 
 //import {TestCode} from "./TestCode";
 //const testcode = new TestCode(environment);

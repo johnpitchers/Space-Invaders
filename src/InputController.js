@@ -16,7 +16,6 @@ export class InputController {
       let keyPressed = key.key;
       if (key.key === " ") keyPressed = "space";
       this.inputMap[keyPressed.toLowerCase()] = true;
-      console.log(keyPressed);
     });
     window.addEventListener("keyup", (key) => {
       let keyPressed = key.key;
