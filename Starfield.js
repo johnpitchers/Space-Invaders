@@ -1,5 +1,5 @@
 import {Color4, Scalar, Sprite, SpriteManager} from "@babylonjs/core";
-import spaceinvadersConfig from "../spaceinvaders.config";
+import spaceinvadersConfig from "./spaceinvaders.config";
 
 export class Starfield {
 

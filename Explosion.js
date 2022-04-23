@@ -1,5 +1,5 @@
 import {Color4, MeshBuilder, Space, Vector3} from "@babylonjs/core";
-import State from "../State";
+import State from "./State";
 
 export class Explosion {
 

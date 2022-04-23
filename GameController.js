@@ -1,7 +1,7 @@
 import {AlienFormationController} from "./AlienFormationController";
-import State from "../State";
+import State from "./State";
 import {PlayerController} from "./PlayerController";
-import config from "../spaceinvaders.config";
+import config from "./spaceinvaders.config";
 import {Color3} from "@babylonjs/core";
 
 export class GameController {

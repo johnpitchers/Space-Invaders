@@ -4,7 +4,7 @@ import {InputController} from "./InputController";
 import {Explosion} from "./Explosion";
 import {MobileInputs} from "./MobileInputs";
 
-import State from "../State";
+import State from "./State";
 
 export class PlayerController {
 
@@ -164,7 +164,7 @@ export class PlayerController {
     this.momentum += .2 * State.delta;
   }
 
-  // @todo: Player movement is faster at lower framerates.
+  // @todo: Player movement is faster at lower framerates!!!
   //  Approx 30% fast at 24FPS than at 60.
   //  Need to work on delta calculations.
   playerMove() {

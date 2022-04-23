@@ -1,6 +1,6 @@
 import {Axis, Scalar, Space, Vector3} from "@babylonjs/core";
-import State from "../State";
-import spaceinvadersConfig from "../spaceinvaders.config";
+import State from "./State";
+import spaceinvadersConfig from "./spaceinvaders.config";
 import {AlienBullet} from "./AlienBullet";
 import {Explosion} from "./Explosion";
 

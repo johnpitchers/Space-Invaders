@@ -14,13 +14,18 @@ export class MobileInputs {
     let moveLeftButton = document.querySelector("#button-left");
     let moveRightButton = document.querySelector("#button-right");
 
+    // Fire Button
     fireButton.onpointerdown = () => {
       this.fire = true;
     };
+    fireButton.onpointerup = () => {
+      this.fire = false;
+    }
     fireButton.onpointerleave = () => {
       this.fire = false;
     }
 
+    //Move left
     moveLeftButton.onpointerdown = ()=>{
       this.left = true;
     }
@@ -31,6 +36,7 @@ export class MobileInputs {
       this.left = false;
     }
 
+    // Move right
     moveRightButton.onpointerdown = ()=>{
       this.right = true;
     }

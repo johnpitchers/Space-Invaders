@@ -1,8 +1,8 @@
-import spaceinvadersConfig from "../spaceinvaders.config";
+import spaceinvadersConfig from "./spaceinvaders.config";
 parseSelectedMode();
 import {Engine} from "@babylonjs/core";
 import {Environment} from "./Environment";
-import State from "../State";
+import State from "./State";
 import {DeltaTime} from "./DeltaTime";
 import {GameController} from "./GameController";
 import {InputController} from "./InputController";
@@ -26,9 +26,10 @@ const inputController = new InputController(environment.scene);
 const UI = new UIText();
 const gameController = new GameController(environment, inputController, gameAssets, UI);
 
+// Set default FPS to 60.
+// Low FPS in oldSchoolEffects mode
 let lastRenderTime = 0;
 let FPS = 60;
-// Low FPS in oldSchoolEffects mode
 if (spaceinvadersConfig.oldSchoolEffects.enabled) FPS = 18;
 
 engine.runRenderLoop(() => {
