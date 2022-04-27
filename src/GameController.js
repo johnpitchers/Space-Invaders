@@ -35,7 +35,7 @@ export class GameController {
   }
 
   startGame() {
-    this.fullScreen();
+    //this.fullScreen();
     this.initialise();
     this.nextLevel();
     this.loadGameGUI();
