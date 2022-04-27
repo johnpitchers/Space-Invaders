@@ -2,6 +2,8 @@ import State from "./State";
 
 export class UIText {
 
+  playAgainPressed = false;
+
   constructor() {
     this.startButtonInit();
     this.modeSelectorInit();
@@ -38,7 +40,6 @@ export class UIText {
   disable(){
     let UI = document.querySelector("#ui");
     UI.classList.remove("active");
-
   }
 
   showGameUI() {
@@ -63,14 +64,18 @@ export class UIText {
     UI.classList.remove("active");
   }
 
-  showPressAnyKey() {
-    let UI = document.querySelector("#panel-press-any-key");
+  showPlayAgain() {
+    let UI = document.querySelector("#panel-play-again");
     UI.classList.add("active");
+    UI.onclick= ()=>{
+      this.playAgainPressed = true;
+    }
   }
 
-  hidePressAnyKey() {
-    let UI = document.querySelector("#panel-press-any-key");
+  hidePlayAgain() {
+    let UI = document.querySelector("#panel-play-again");
     UI.classList.remove("active");
+    this.playAgainPressed = false;
   }
 
   showNewHighScore() {

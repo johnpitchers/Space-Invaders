@@ -48,7 +48,6 @@ export class GameController {
   }
 
   fullScreen() {
-    return;
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
       let el = document.documentElement;
       if (el.requestFullscreen) {
@@ -96,14 +95,14 @@ export class GameController {
   gameOver() {
     switch (State.gameOverStep) {
       case 0:
+        this.UI.showGameUI();
         setTimeout(() => {
-          this.UI.showGameUI();
           this.UI.showGameOver();
           this.checkForNewHighScore();
           this.gameAssets.sounds.gameOver.play();
         }, 2000);
         setTimeout(() => {
-          this.UI.showPressAnyKey();
+          this.UI.showPlayAgain();
           State.gameOverStep = 2;
         }, 4000);
         State.gameOverStep = 1;
@@ -111,13 +110,10 @@ export class GameController {
       case 1:
         break;
       case 2:
-        let keyDown = Object.entries(this.inputController.inputMap).filter(([key, value]) => {
-          return value === true;
-        })
-        if (keyDown.length) {
+        if (this.UI.playAgainPressed) {
           this.destroyGameGUI();
           this.UI.hideGameOver();
-          this.UI.hidePressAnyKey();
+          this.UI.hidePlayAgain();
           this.UI.hideNewHighScore();
           State.gameOverStep = 3;
           this.gameAssets.sounds.clearLevel.play();
@@ -146,7 +142,6 @@ export class GameController {
       this.gameGUI.update();
     }
   }
-
 
   buildAliensFormation() {
     this.alienFormation = new AlienFormationController(this.scene, this.gameAssets);

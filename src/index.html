@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+  <link rel="shortcut icon" href="../public/favicon-96.png">
+  <link rel="apple-touch-icon" href="../public/favicon-180.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Space Invaders - Babylon Project</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles/style.scss">
+  <link rel="stylesheet" href="./styles/style.scss">
 </head>
 <body>
 <div id="container">
@@ -41,9 +42,6 @@
       <div id="panel-game-over" class="">
         GAME OVER
       </div>
-      <div id="panel-press-any-key" class="">
-        PRESS ANY KEY TO CONTINUE
-      </div>
       <div id="panel-new-highscore" class="">
         **** NEW HIGH SCORE ****<br>
         <div class="value">0</div>
@@ -62,10 +60,12 @@
     <button id="start-game">START GAME</button>
   </p>
 </div>
+<div id="panel-play-again" class="">
+  <button id="play-again">PLAY AGAIN</button>
+</div>
 <script type="module" src="./main.js"></script>
 <script>
   loading();
-
   function loading() {
     setTimeout(function () {
       let el = document.querySelector("#loading")

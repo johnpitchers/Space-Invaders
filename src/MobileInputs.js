@@ -8,19 +8,18 @@ export class MobileInputs {
   fire = false;
   left = false;
   right = false;
+  isMobile = false;
 
   constructor(scene) {
     this.scene = scene;
-    //Show the mobile inputs if the user is on mobile.
-    if (true || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-      //document.querySelector("#mobile-inputs").classList.add("active");
-
-    }
+    this.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
   }
 
   enable(texture) {
-    this.drawJoystick(texture);
-    this.drawFireButton(texture);
+    if (this.isMobile) {
+      this.drawJoystick(texture);
+      this.drawFireButton(texture);
+    }
   }
 
   disable() {
@@ -34,30 +33,47 @@ export class MobileInputs {
     let height = 60;
     let fireButton = this.makeThumbArea("thumb", 2, "white", null);
 
-    fireButton.height = height+"px";
-    fireButton.width = width+"px";
+    fireButton.height = height + "px";
+    fireButton.width = width + "px";
     fireButton.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
     fireButton.verticalAlignment = Control.VERTICAL_ALIGNMENT_BOTTOM;
     fireButton.alpha = 1;
     fireButton.left = offsetX;
     fireButton.top = offsetY;
-    fireButton.onPointerDownObservable.add(()=>{
+    fireButton.onPointerDownObservable.add(() => {
       this.fire = true;
     });
-    fireButton.onPointerUpObservable.add(()=>{
+    fireButton.onPointerUpObservable.add(() => {
       this.fire = false;
     });
     texture.addControl(fireButton);
+
     let line1 = new Line();
+    line1.x1 = (width / 2) - 1;
+    line1.y1 = height / 8 * 2;
+    line1.x2 = (width / 3) - 2;
+    line1.y2 = height / 8 * 5;
+    line1.color = "white";
+    line1.lineWidth = 4;
+    fireButton.addControl(line1);
 
-    line1.x1 = width/2+offsetX;
-    line1.y1 = offsetY;
+    let line2 = new Line();
+    line2.x1 = (width / 2) - 2;
+    line2.y1 = height / 8 * 2;
+    line2.x2 = (width / 3 * 2) - 2;
+    line2.y2 = height / 8 * 5;
+    line2.color = "white";
+    line2.lineWidth = 4;
+    fireButton.addControl(line2);
 
-    line1.x2 = line1.x1;
-    line1.y2 = offsetY+height;
-    line1.color = "yellow";
-    line1.lineWidth = 3;
-    texture.addControl(line1);
+    let line3 = new Line();
+    line3.x1 = (width / 3) - 2;
+    line3.y1 = (height / 8 * 5) - 1;
+    line3.x2 = (width / 3 * 2) - 2;
+    line3.y2 = (height / 8 * 5) - 1;
+    line3.color = "white";
+    line3.lineWidth = 4;
+    fireButton.addControl(line3);
   }
 
   drawJoystick(texture) {

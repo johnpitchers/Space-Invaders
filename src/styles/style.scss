@@ -47,9 +47,19 @@ body {
       }
     }
 
-    #intro {
+    #intro, #play-again {
       filter: blur(0.8px);
     }
+  }
+
+  button {
+    font: inherit;
+    background: transparent;
+    color: #0f0;
+    border: 2px solid #0f0;
+    padding: 10px 10px 8px;
+    position: relative;
+    font-size: 1.2em;
   }
 
   #loading {
@@ -95,13 +105,6 @@ body {
 
     button {
       margin-top: 1.5em;
-      font: inherit;
-      background: transparent;
-      color: #0f0;
-      border: 2px solid #0f0;
-      padding: 10px 10px 8px;
-      position: relative;
-      font-size: 1.2em;
     }
 
     select {
@@ -118,6 +121,19 @@ body {
         color: #fff;
         position: relative;
       }
+    }
+  }
+
+  #panel-play-again {
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, 15vh);
+    text-align: center;
+
+    &.active {
+      display: block;
     }
   }
 }
@@ -151,46 +167,6 @@ canvas {
     &.active {
       display: block;
     }
-
-    #mobile-inputs {
-      bottom: 0;
-      width: 100%;
-      padding: 20px;
-      box-sizing: border-box;
-      height: 5em;
-      display: none;
-
-      &.active {
-        display: block;
-      }
-
-      .button {
-        position: absolute;
-        bottom: 20px;
-        border: 4px solid #fff;
-        text-align: center;
-        width: 52px;
-        height: 52px;
-        line-height: 52px;
-        user-select: none;
-        -moz-user-select: none;
-        -webkit-user-select: none;
-      }
-
-      #button-fire {
-        position: absolute;
-        left: 20px;
-      }
-
-      #button-right {
-        right: 20px;
-      }
-
-      #button-left {
-        right: 100px;
-      }
-    }
-
   }
 
   #panel-score {
@@ -227,29 +203,14 @@ canvas {
     top: 50%;
     transform: translate(-50%, -50%) scale(0.2);
     opacity: 0;
-    font-size: 1.1em;
-    border: 6px solid #fff;
-    padding: 1em;
+    font-size: 6.5em;
     transition: none;
     text-align: center;
 
     &.active {
       transform: translate(-50%, -50%) scale(1);
       opacity: 9;
-      transition: all ease 1s;
-    }
-  }
-
-  #panel-press-any-key {
-    display: none;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, 140px);
-    text-align: center;
-
-    &.active {
-      display: block;
+      transition: all ease 2s;
     }
   }
 
@@ -271,6 +232,7 @@ canvas {
       padding-top: 1em;
     }
   }
+
 
   $shadowColor: #000;
 
@@ -298,6 +260,7 @@ canvas {
       color: #f00;
       padding-top: 1em;
       display: none;
+      font-size: 0.75em;
       @media all and (orientation: portrait) {
         display: block;
       }

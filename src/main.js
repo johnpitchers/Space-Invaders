@@ -38,6 +38,7 @@ engine.runRenderLoop(() => {
         gameController.titleScreen();
         break;
       case "STARTGAME":
+        Engine.audioEngine.unlock();
         gameController.startGame();
         break;
       case "NEXTLEVEL":
