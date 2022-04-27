@@ -13,7 +13,7 @@ export class GameGUI {
   textScale = 1;
 
   constructor() {
-    this.texture = AdvancedDynamicTexture.CreateFullscreenUI("UI", true);
+    this.texture = AdvancedDynamicTexture.CreateFullscreenUI("UI", false);
     this.getCanvasSize();
     this.createTextNodes();
     this.fixTextScale();

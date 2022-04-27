@@ -128,6 +128,7 @@ export class MobileInputs {
     });
 
     thumbContainer.onPointerMoveObservable.add((coordinates) => {
+      let deadZone = 15;
       if (puck.isDown) {
         joystickX = -(texture._canvas.width - coordinates.x - (thumbContainer._currentMeasure.width * .5) - offsetX);
         joystickY = texture._canvas.height - coordinates.y - (thumbContainer._currentMeasure.height * .5) + offsetY;
@@ -136,8 +137,8 @@ export class MobileInputs {
         puck.left = puck.floatLeft;
         puck.top = puck.floatTop;
         this.left = this.right = false;
-        if (joystickX < 0) this.left = true;
-        if (joystickX > 0) this.right = true;
+        if (joystickX < -deadZone) this.left = true;
+        if (joystickX > deadZone) this.right = true;
       }
     });
 

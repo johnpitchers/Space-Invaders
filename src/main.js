@@ -66,6 +66,7 @@ engine.runRenderLoop(() => {
       timeNow = Date.now()
     }
     lastRenderTime = timeNow;
+    window.scrollTo(0, 0);
     environment.scene.render();
   }
 });
