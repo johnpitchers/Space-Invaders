@@ -75,7 +75,7 @@ export class GameGUI {
   update() {
     this.textScore.text = "SCORE:" + State.score;
     this.textLevel.text = "LEVEL:" + State.level;
-    this.textLives.text = "LIVES:" + State.lives;
+    this.textLives.text = "LIVES:" + Math.max(0,State.lives);
     this.textHigh.text = "HIGH:" + (window.localStorage.getItem('highScore') ?? 0);
   }
 
