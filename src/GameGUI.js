@@ -76,7 +76,7 @@ export class GameGUI {
     this.textScore.text = "SCORE:" + State.score;
     this.textLevel.text = "LEVEL:" + State.level;
     this.textLives.text = "LIVES:" + State.lives;
-    this.textHigh.text = "HIGH:" + window.localStorage.getItem('highScore');
+    this.textHigh.text = "HIGH:" + (window.localStorage.getItem('highScore') ?? 0);
   }
 
   getCanvasSize() {

@@ -80,6 +80,7 @@ export class UIText {
 
   showNewHighScore() {
     this.enable();
+    document.querySelector("#panel-new-highscore .value").innerHTML = window.localStorage.getItem('highScore');
     let UI = document.querySelector("#panel-new-highscore");
     UI.classList.add("active");
   }
