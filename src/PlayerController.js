@@ -14,7 +14,7 @@ export class PlayerController {
     this.gameAssets = gameAssets;
     this.movementEnabled = false;
     this.inputController = new InputController(this.scene);
-    this.mobileInputs = new MobileInputs();
+    this.mobileInputs = new MobileInputs(this.scene);
     this.bullets = [];
     this.maxBullets = 50;
     this.momentum = 0;
@@ -51,9 +51,11 @@ export class PlayerController {
       this.playerActions();
       this.cleanupBullets();
     });
+    //this.mobileInputs.enable();
   }
 
   disableMovement() {
+    //this.mobileInputs.disable();
     this.movementEnabled = false;
     this.disableCollisions();
     this.scene.onBeforeRenderObservable.remove(this.inputObserver);

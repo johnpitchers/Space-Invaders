@@ -1,4 +1,4 @@
-import spaceinvadersConfig from "./spaceinvaders.config";
+import spaceinvadersConfig from "../spaceinvaders.config";
 parseSelectedMode();
 import {Engine} from "@babylonjs/core";
 import {Environment} from "./Environment";
@@ -6,22 +6,19 @@ import State from "./State";
 import {DeltaTime} from "./DeltaTime";
 import {GameController} from "./GameController";
 import {InputController} from "./InputController";
-import {GameAssetsManager} from "./GameAssetsManager";
 import {Starfield} from "./Starfield";
+import {GameAssetsManager} from "./GameAssetsManager";
 import {UIText} from "./UIText";
 import {MobileInputs} from "./MobileInputs";
 
-//import {TestCode} from "./TestCode";
-//const testcode = new TestCode(environment);
 
 const canvas = document.querySelector('canvas');
 const engine = new Engine(canvas, true);
 const environment = new Environment(engine);
+
+const stars = new Starfield(environment.scene);
 const deltaTime = new DeltaTime(environment.scene);
 const gameAssets = new GameAssetsManager(environment.scene);
-gameAssets.loadModels();
-gameAssets.loadSounds();
-const stars = new Starfield(environment.scene);
 const inputController = new InputController(environment.scene);
 const UI = new UIText();
 const gameController = new GameController(environment, inputController, gameAssets, UI);
@@ -57,9 +54,6 @@ engine.runRenderLoop(() => {
         break;
       case "GAMEOVER":
         gameController.gameOver();
-        break;
-      case "TESTCODE":
-        //testcode.loop();
         break;
       default:
         // does nothing.

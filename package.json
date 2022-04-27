@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build --emptyOutDir",
     "preview": "vite preview"
   },
   "devDependencies": {
@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@babylonjs/core": "^4.2.2",
+    "@babylonjs/gui": "^4.2.2",
     "@babylonjs/loaders": "^4.2.2"
   }
 }

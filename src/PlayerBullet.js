@@ -1,5 +1,5 @@
 import {Axis, Color3, MeshBuilder, Scalar, Space, Vector3} from "@babylonjs/core";
-import spaceinvadersConfig from "./spaceinvaders.config";
+import spaceinvadersConfig from "../spaceinvaders.config";
 import {Explosion} from "./Explosion";
 import State from "./State";
 

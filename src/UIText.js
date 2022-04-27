@@ -30,7 +30,19 @@ export class UIText {
     State.state = "STARTGAME";
   }
 
+  enable(){
+    let UI = document.querySelector("#ui");
+    UI.classList.add("active");
+  }
+
+  disable(){
+    let UI = document.querySelector("#ui");
+    UI.classList.remove("active");
+
+  }
+
   showGameUI() {
+    this.enable();
     let UI = document.querySelector("#game-ui");
     UI.classList.add("active");
   }
@@ -41,6 +53,7 @@ export class UIText {
   }
 
   showGameOver() {
+    this.enable();
     let UI = document.querySelector("#panel-game-over");
     UI.classList.add("active");
   }
@@ -61,6 +74,7 @@ export class UIText {
   }
 
   showNewHighScore() {
+    this.enable();
     let UI = document.querySelector("#panel-new-highscore");
     UI.classList.add("active");
   }
@@ -71,6 +85,7 @@ export class UIText {
   }
 
   showTitleScreen() {
+    this.enable();
     let UI = document.querySelector("#title-screen");
     UI.classList.add("active");
     let buttons = document.querySelector("#intro");
@@ -84,11 +99,6 @@ export class UIText {
     buttons.classList.remove("active");
   }
 
-  update(selector, value) {
-    let el = "#panel-" + selector + " .value";
-    let valueContainer = document.querySelector(el);
-    valueContainer.innerText = value;
-  }
   hideLoadingScreen(){
     let loading = document.querySelector("#loading");
     loading.classList.remove('active');

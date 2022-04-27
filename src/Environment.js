@@ -1,5 +1,5 @@
 import {Color3, GlowLayer, HemisphericLight, Scalar, Scene, UniversalCamera, Vector3} from "@babylonjs/core";
-import spaceinvadersConfig from "./spaceinvaders.config";
+import spaceinvadersConfig from "../spaceinvaders.config";
 
 export class Environment {
 

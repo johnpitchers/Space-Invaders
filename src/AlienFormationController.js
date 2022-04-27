@@ -6,7 +6,7 @@ import {AlienBullet} from "./AlienBullet";
 import {Barrier} from "./Barrier";
 import {Explosion} from "./Explosion";
 import {MotherShip} from "./MotherShip";
-import spaceinvadersConfig from "./spaceinvaders.config";
+import spaceinvadersConfig from "../spaceinvaders.config";
 
 export class AlienFormationController {
 

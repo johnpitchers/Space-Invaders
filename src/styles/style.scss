@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+//@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bebas+Neue&family=Press+Start+2P&display=swap');
 
 $scanlines: repeating-linear-gradient(
                 0deg,
@@ -127,6 +128,12 @@ canvas {
 }
 
 #ui {
+  display: none;
+
+  &.active {
+    display: block;
+  }
+
   font-size: 1.7vh;
   @media(min-width: 1350px) {
     font-size: 22px;
@@ -165,6 +172,9 @@ canvas {
         width: 52px;
         height: 52px;
         line-height: 52px;
+        user-select: none;
+        -moz-user-select: none;
+        -webkit-user-select: none;
       }
 
       #button-fire {

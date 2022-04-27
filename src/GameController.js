@@ -1,8 +1,9 @@
 import {AlienFormationController} from "./AlienFormationController";
 import State from "./State";
 import {PlayerController} from "./PlayerController";
-import config from "./spaceinvaders.config";
+import config from "../spaceinvaders.config";
 import {Color3} from "@babylonjs/core";
+import {GameGUI} from "./GameGUI";
 
 export class GameController {
 
@@ -21,9 +22,7 @@ export class GameController {
     State.score = 0;
     State.highScore = this.getHighScore();
     State.gameOverStep = 0;
-    this.UI.update('highscore', State.highScore);
     State.gameOverStep = 0;
-    this.UI.showGameUI();
   }
 
   setHighScore(score) {
@@ -36,8 +35,30 @@ export class GameController {
   }
 
   startGame() {
+    this.fullScreen();
     this.initialise();
     this.nextLevel();
+    this.loadGameGUI();
+  }
+
+  loadGameGUI(){
+    this.UI.disable();
+    this.gameGUI = new GameGUI();
+    this.playerController.mobileInputs.enable(this.gameGUI.texture);
+  }
+
+  fullScreen() {
+    return;
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+      let el = document.documentElement;
+      if (el.requestFullscreen) {
+        el.requestFullscreen();
+      } else if (el.webkitRequestFullscreen) { /* Safari */
+        el.webkitRequestFullscreen();
+      } else if (el.msRequestFullscreen) { /* IE11 */
+        el.msRequestFullscreen();
+      }
+    }
   }
 
   titleScreen() {
@@ -64,10 +85,10 @@ export class GameController {
         this.gameAssets.sounds.clearLevel.play();
       }, 1500);
     }
-    this.updateUI();
+    this.gameGUI.update();
   }
 
-  aliensWin(){
+  aliensWin() {
     State.lives = 0;
     this.playerController.playerMesh.dispose();
   }
@@ -76,6 +97,7 @@ export class GameController {
     switch (State.gameOverStep) {
       case 0:
         setTimeout(() => {
+          this.UI.showGameUI();
           this.UI.showGameOver();
           this.checkForNewHighScore();
           this.gameAssets.sounds.gameOver.play();
@@ -93,11 +115,10 @@ export class GameController {
           return value === true;
         })
         if (keyDown.length) {
+          this.destroyGameGUI();
           this.UI.hideGameOver();
           this.UI.hidePressAnyKey();
           this.UI.hideNewHighScore();
-          this.UI.hideGameUI();
-          this.UI.update('highscore', State.highScore);
           State.gameOverStep = 3;
           this.gameAssets.sounds.clearLevel.play();
         }
@@ -113,19 +134,19 @@ export class GameController {
     }
   }
 
-  checkForNewHighScore(){
-    if (State.score > this.getHighScore()){
+  destroyGameGUI(){
+    this.gameGUI.texture.dispose();
+    delete this.gameGUI.texture;
+  }
+
+  checkForNewHighScore() {
+    if (State.score > this.getHighScore()) {
       this.setHighScore(State.score);
-      this.UI.update('new-highscore', State.highScore);
       this.UI.showNewHighScore();
+      this.gameGUI.update();
     }
   }
-  updateUI() {
-    this.UI.update('score', State.score);
-    this.UI.update('lives', State.lives);
-    this.UI.update('level', State.level);
-    //this.UI.update('level', State.level);
-  }
+
 
   buildAliensFormation() {
     this.alienFormation = new AlienFormationController(this.scene, this.gameAssets);
@@ -134,7 +155,7 @@ export class GameController {
   clearLevel() {
     let clearSteps = 4;
     this.playerController.actionCam(0);
-    this.updateUI();
+    this.gameGUI.update();
     // Step 1. All barriers must be destroyed.
     if (this.alienFormation.barriers.length) {
       this.alienFormation.destroyBarriers();

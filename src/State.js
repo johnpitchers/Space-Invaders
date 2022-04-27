@@ -1,5 +1,6 @@
 export default {
   state: "TITLESCREEN",
+  //state: "STARTGAME",
   level: 0,
   lives: 3,
   score: 0,

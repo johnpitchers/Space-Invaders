@@ -2,15 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
-  <link rel="icon" type="image/svg+xml" href="src/favicon.svg"/>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Space Invaders - Babylon Project</title>
-  <link rel="stylesheet" href="./assets/style.scss">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/style.scss">
 </head>
 <body>
 <div id="container">
   <canvas width="1920" height="1080"></canvas>
-  <div id="ui">
+  <div id="ui" class="active">
     <div id="title-screen" class="active">
       <div id="title">
         <div class="layer layer1">
@@ -35,18 +38,6 @@
       </div>
     </div>
     <div id="game-ui" class="">
-      <div id="panel-score">
-        <span class="label">SCORE:</span><span class="value">0</span>
-      </div>
-      <div id="panel-level">
-        <span class="label">LEVEL:</span><span class="value">1</span>
-      </div>
-      <div id="panel-lives">
-        <span class="label">LIVES:</span><span class="value">0</span>
-      </div>
-      <div id="panel-highscore">
-        <span class="label">HIGH:</span><span class="value">0</span>
-      </div>
       <div id="panel-game-over" class="">
         GAME OVER
       </div>
@@ -56,11 +47,6 @@
       <div id="panel-new-highscore" class="">
         **** NEW HIGH SCORE ****<br>
         <div class="value">0</div>
-      </div>
-      <div id="mobile-inputs">
-        <div class="button" id="button-fire">!</div>
-        <div class="button" id="button-left">&lt;</div>
-        <div class="button" id="button-right">></div>
       </div>
     </div>
   </div>
@@ -76,7 +62,7 @@
     <button id="start-game">START GAME</button>
   </p>
 </div>
-<script type="module" src="./script.js"></script>
+<script type="module" src="./main.js"></script>
 <script>
   loading();
 

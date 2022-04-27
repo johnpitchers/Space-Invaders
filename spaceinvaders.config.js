@@ -19,9 +19,9 @@ export default {
     speed: 0.1,
     minStarSize: 0.1,
     maxStarSize: 0.6,
-    numberofStars: 400,
+    numberofStars: 500,
     ratioOfBlinkingStars: 0.3,
   },
   startingLevel: 0, // Starting level -1;
-  startingLives: 3,
+  startingLives: 0,
 }

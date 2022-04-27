@@ -8,11 +8,12 @@ export class GameAssetsManager {
   constructor(scene) {
     this.isComplete = false;
     this.scene = scene;
-    this.assetsManager = new AssetsManager(this.scene);
-    this.assetsManager.useDefaultLoadingScreen = true;
     this.assetContainer = new AssetContainer(this.scene);
     this.totalAssetsToLoad = 5 + 10;
     this.assetsLoaded = 0;
+
+    this.loadSounds();
+    this.loadModels();
   }
 
   loadSounds() {
