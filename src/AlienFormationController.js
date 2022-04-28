@@ -11,7 +11,7 @@ import spaceinvadersConfig from "../spaceinvaders.config";
 export class AlienFormationController {
 
   defaultParams = {
-    columns: 4,
+    columns: 5,
     rows: 5,
     spacing: {
       x: 9,
@@ -223,7 +223,7 @@ export class AlienFormationController {
     let levelParams = this.defaultParams;
 
     // Alien grid gets bigger each level up to a max size
-    const maxColumns = 8;
+    const maxColumns = 10;
     const maxRows = 6;
     levelParams.columns = this.defaultParams.columns + State.level - 1;
     levelParams.rows = this.defaultParams.rows + State.level - 1;
