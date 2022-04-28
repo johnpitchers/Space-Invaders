@@ -82,6 +82,8 @@ export class GameController {
       setTimeout(() => {
         State.state = "CLEARLEVEL";
         this.gameAssets.sounds.clearLevel.play();
+        this.UI.showGameUI();
+        this.UI.showGameHints();
       }, 1500);
     }
     this.gameGUI.update();
@@ -179,7 +181,6 @@ export class GameController {
       this.alienFormation.motherShip.destroyMotherShip();
       this.alienFormation.clearScene();
       delete this.alienFormation;
-      //setTimeout(() => {
       // final cleanup to ensure everything has been disposed of.
       while (this.scene.meshes.length) {
         this.scene.meshes[0].dispose();
@@ -189,7 +190,9 @@ export class GameController {
       } else {
         State.state = "NEXTLEVEL";
       }
-      //}, 2000);
+      this.UI.hideGameHints();
+      this.UI.hideGameUI();
+      this.UI.disable();
     }
   }
 }

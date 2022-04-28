@@ -91,9 +91,9 @@ body {
     overflow-wrap: anywhere;
     left: 50%;
     transform: translateX(-50%);
-    @media(min-width: 1350px) {
-      font-size: 22px;
-    }
+    //@media(min-width: 1350px) {
+    //  font-size: 22px;
+    //}
 
     &.active {
       display: block
@@ -107,9 +107,9 @@ body {
     position: absolute;
     top: 46%;
     font-size: 1.7vh;
-    @media(min-width: 1350px) {
-      font-size: 22px;
-    }
+    //@media(min-width: 1350px) {
+    //  font-size: 22px;
+    //}
 
     line-height: 1.5;
     display: none;
@@ -167,9 +167,9 @@ canvas {
   }
 
   font-size: 1.7vh;
-  @media(min-width: 1350px) {
-    font-size: 22px;
-  }
+  //@media(min-width: 1350px) {
+  //  font-size: 22px;
+  //}
   position: fixed;
   top: 0;
   bottom: 0;
@@ -249,6 +249,34 @@ canvas {
     }
   }
 
+  #panel-game-hints {
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    max-width: 80%;
+    width: 600px;
+    line-height: 1.5;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    color: #fa3;
+    font-size: 0.666em;
+
+    .lg {
+      font-size: 2.1em;
+      color: #ff0;
+      vertical-align: middle;
+    }
+    .value {
+      font-size: 1.5em;
+      color: #fff;
+      margin: 1em 0;
+    }
+
+    &.active {
+      display: block;
+    }
+  }
 
   $shadowColor: #000;
 
@@ -262,9 +290,9 @@ canvas {
     transform: translateX(-50%);
     text-align: center;
     font-size: 1.7vh;
-    @media(min-width: 1350px) {
-      font-size: 24px;
-    }
+    //@media(min-width: 1350px) {
+    //  font-size: 24px;
+    //}
     display: none;
     line-height: 1.6;
 
@@ -288,9 +316,9 @@ canvas {
       width: 100%;
       text-align: center;
       font-size: 6vh;
-      @media(min-width: 1350px) {
-        font-size: 75px;
-      }
+      //@media(min-width: 1350px) {
+      //  font-size: 75px;
+      //}
       color: #ff0;
       line-height: 1.05;
       text-shadow: 0 0.05em $shadowColor, 0 -0.05em $shadowColor, 0.05em 0 $shadowColor, -0.05em 0 $shadowColor,

@@ -3,6 +3,14 @@ import State from "./State";
 export class UIText {
 
   playAgainPressed = false;
+  randNum = Math.floor(Math.random() * 10);
+  gameHints = [
+    'You start with a number of lives but if invaders get past you, it\'s game over.',
+    'By 1982, Space Invaders was the highest-grossing entertainment product at the time.',
+    'Alien formations get stronger, larger and more aggressive with each level.',
+    'British Newspaper, The Times, ranked Space Invaders No. 1 on its list of "The ten most influential video games ever"',
+    'Destory motherships for a huge score bonus.',
+  ]
 
   constructor() {
     this.startButtonInit();
@@ -16,12 +24,12 @@ export class UIText {
   }
 
   modeSelectorInit() {
-    let selector =document.getElementById("change-mode");
-    let mode = parseInt(window.localStorage.getItem('mode')?? 0);
+    let selector = document.getElementById("change-mode");
+    let mode = parseInt(window.localStorage.getItem('mode') ?? 0);
     selector.getElementsByTagName('option')[mode].selected = true;
 
-    selector.onchange = (function(el){
-      window.localStorage.setItem("mode",selector.value);
+    selector.onchange = (function (el) {
+      window.localStorage.setItem("mode", selector.value);
       location.reload();
     });
 
@@ -32,12 +40,12 @@ export class UIText {
     State.state = "STARTGAME";
   }
 
-  enable(){
+  enable() {
     let UI = document.querySelector("#ui");
     UI.classList.add("active");
   }
 
-  disable(){
+  disable() {
     let UI = document.querySelector("#ui");
     UI.classList.remove("active");
   }
@@ -64,10 +72,27 @@ export class UIText {
     UI.classList.remove("active");
   }
 
+  showGameHints() {
+    this.newGameHint();
+    this.enable();
+    let UI = document.querySelector("#panel-game-hints");
+    UI.classList.add("active");
+  }
+
+  hideGameHints() {
+    let UI = document.querySelector("#panel-game-hints");
+    UI.classList.remove("active");
+  }
+
+  newGameHint() {
+    let i = ((this.randNum + State.level) % this.gameHints.length)
+    document.querySelector("#panel-game-hints .value").innerHTML = this.gameHints[i];
+  }
+
   showPlayAgain() {
     let UI = document.querySelector("#panel-play-again");
     UI.classList.add("active");
-    UI.onclick= ()=>{
+    UI.onclick = () => {
       this.playAgainPressed = true;
     }
   }
@@ -105,7 +130,7 @@ export class UIText {
     buttons.classList.remove("active");
   }
 
-  hideLoadingScreen(){
+  hideLoadingScreen() {
     let loading = document.querySelector("#loading");
     loading.classList.remove('active');
   }
