@@ -10,6 +10,7 @@ export class UIText {
     'Alien formations get stronger, larger and more aggressive with each level.',
     'British paper, The Times, ranked Space Invaders No. 1 on its list of "The ten most influential video games ever".',
     'Destroy motherships for a huge score bonus.',
+    'Tomohiro Nishikado developed Space Invaders in 1978. His name was never put on the game for contractual reasons.'
   ]
 
   constructor() {
