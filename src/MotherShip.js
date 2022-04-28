@@ -27,7 +27,7 @@ export class MotherShip {
       type: "mothership",
       scoreValue: 1000,
       lives: this.hitsToKill,
-      rotation: 0
+      frameCounter: 0 // Used in orthographic camera mode
     }
     this.mesh.onDispose = (mesh) => {
       if (this.mesh.metadata.silentDispose === undefined) {
@@ -109,16 +109,19 @@ export class MotherShip {
     }
     let radius = {
       x: 100,
-      y: 25
+      y: 27
     };
     let i = 0;
     this.mothershipLoop = this.scene.onBeforeRenderObservable.add(() => {
       i += (this.velocity / 250) * State.delta;
-      if (spaceinvadersConfig.orthographicCam) {
-        // this.mesh.metadata.rotation += (spaceinvadersConfig.motherShip.rotateSpeed * State.delta);
-        // if (Math.floor((this.mesh.metadata.rotation*100) % 3 ) === 0) {
-        //   this.mesh.rotate(Axis.Y, Math.PI / 4, Space.LOCAL);
-        // }
+      if (spaceinvadersConfig.oldSchoolEffects.enabled) {
+        // If orthographic camera is in use,
+        // rotate the mesh just once every 15 frames
+        // to create an old school animation.
+        this.mesh.metadata.frameCounter ++
+        if (this.mesh.metadata.frameCounter % 15 === 0) {
+           this.mesh.rotate(Axis.Y, this.mesh.rotation.y+Math.PI / 8, Space.LOCAL);
+        }
       } else {
         this.mesh.rotate(Axis.Y, this.mesh.rotation.y + (spaceinvadersConfig.motherShip.rotateSpeed * State.delta), Space.LOCAL);
       }

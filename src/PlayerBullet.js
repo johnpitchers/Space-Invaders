@@ -50,8 +50,13 @@ export class PlayerBullet {
     if (this.bullet.collider.collidedMesh.metadata?.lives > 0) {
       this.bullet.collider.collidedMesh.metadata.lives -= 1;
 
-      if (spaceinvadersConfig.orthographicCam) {
-        this.bullet.collider.collidedMesh.rotate(Axis.Z, Scalar.RandomRange(-0.25, 0.25), Space.LOCAL);
+      if (spaceinvadersConfig.oldSchoolEffects.enabled) {
+        if (this.bullet.collider.collidedMesh.metadata.type ==="mothership"){
+          this.bullet.collider.collidedMesh.rotate(Axis.Z, Scalar.RandomRange(-0.25, 0.25), Space.WORLD);
+
+        }else {
+          this.bullet.collider.collidedMesh.rotate(Axis.Z, Scalar.RandomRange(-0.25, 0.25), Space.LOCAL);
+        }
       } else {
         this.bullet.collider.collidedMesh.rotate(Axis.X, Scalar.RandomRange(-0.3, 0.3), Space.LOCAL);
       }

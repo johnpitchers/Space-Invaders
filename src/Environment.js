@@ -75,18 +75,27 @@ export class Environment {
     } else {
       camera = new UniversalCamera("camera", new Vector3(0, 50, -150), this.scene);
     }
-    if (spaceinvadersConfig.orthographicCam) {
+    if (spaceinvadersConfig.oldSchoolEffects.enabled) {
       let orthoSize = 60;
       camera.mode = Camera.ORTHOGRAPHIC_CAMERA;
-      camera.width = this.engine.getRenderWidth();
-      camera.height = this.engine.getRenderHeight();
-      camera.ratio = camera.width / camera.height;
-      camera.orthoLeft = camera.ratio * -orthoSize;
-      camera.orthoRight = camera.ratio * orthoSize;
       camera.orthoTop = orthoSize;
       camera.orthoBottom = -orthoSize;
+      this.setOrthographicRatio(camera, orthoSize);
+
+      // resize on canvas resize
+      this.engine.onResizeObservable.add(() => {
+        this.setOrthographicRatio(camera,orthoSize);
+      });
     }
     camera.setTarget(new Vector3(0, 50, 0));
     return camera;
+  }
+
+  setOrthographicRatio(camera, orthoSize){
+    camera.width = this.engine.getRenderWidth();
+    camera.height = this.engine.getRenderHeight();
+    camera.ratio = camera.width / camera.height;
+    camera.orthoLeft = camera.ratio * -orthoSize;
+    camera.orthoRight = camera.ratio * orthoSize;
   }
 }

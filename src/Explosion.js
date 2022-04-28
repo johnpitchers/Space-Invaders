@@ -46,7 +46,7 @@ export class Explosion {
     // Rotate it in a random direction and move
     // it out. Move out distance is based on
     // the number of particles and velocity.
-    if (!spaceinvadersConfig.orthographicCam) {
+    if (!spaceinvadersConfig.oldSchoolEffects.enabled) {
       particle.mesh.rotation = new Vector3(Math.random() * Math.PI * 2, Math.random() * Math.PI * 2, Math.random() * Math.PI * 2);
     }
     particle.mesh.translate(particle.movementVector, particle.velocity * this.numParticles / 1.5, Space.WORLD);
@@ -72,7 +72,7 @@ export class Explosion {
       delete this.particles[particle.id];
     } else {
       particle.mesh.translate(particle.movementVector, particle.velocity, Space.WORLD);
-      if (!spaceinvadersConfig.orthographicCam) {
+      if (!spaceinvadersConfig.oldSchoolEffects.enabled) {
         particle.mesh.rotate(particle.rotationVector, particle.rotationVelocity);
       }
     }
