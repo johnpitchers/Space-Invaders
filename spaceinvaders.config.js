@@ -22,6 +22,6 @@ export default {
     numberofStars: 500,
     ratioOfBlinkingStars: 0.3,
   },
-  startingLevel: 0, // Starting level -1;
+  startingLevel: 4, // Starting level -1;
   startingLives: 3,
 }
