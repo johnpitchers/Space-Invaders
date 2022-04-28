@@ -3,10 +3,13 @@ A fun re-imagining of the 1978 classic by Tomohiro Nishikado and Taito.
 
 Play it here: https://spaceinvaders.viperfish.com.au
 
-Play in the traditional 2D mode or in 3D. The 3D mode is the same game with the camera floating below the player. Both modes are 3D from a different perspective.
-Have also added a mode that attempts to emulate an old CRT monitor. With scanlines and a slight glow.
-
 ![Space Invaders Screenshot](https://spaceinvaders.viperfish.com.au/assets/images/space_Invaders_babylonjs_2.jpg)
+
+Play in the traditional 2D mode - much faster and smoother than the original - or in 3D. The 3D mode is the same game with the camera 
+floating behind the player shp. Both modes are 3D from a different perspective.
+
+There is also a third mode which attempts to emulate a CRT television straight from the 80s. This mode uses an orthographic camera, limits rotations to the Z axis for a purely 2D experience,
+adds a glow layer and a layer of scanlines.
 
 This project was built over a few weeks in Javascript using the BabylonJS framework. ViteJS is used as a build tool.
 
