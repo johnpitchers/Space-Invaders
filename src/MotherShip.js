@@ -80,7 +80,6 @@ export class MotherShip {
     this.active = true;
   }
 
-
   moveOffScreen() {
     if (!this.active) return false;
     let posY = this.mesh.position.y;
@@ -119,6 +118,9 @@ export class MotherShip {
         x: center.x + Math.cos(i) * radius.x,
         y: center.y - Math.sin(i) * radius.y
       }
+      if (State.state ==="CLEARLEVEL"){
+        pos.y = this.mesh.position.y;
+      }
       if (direction === "leftToRight") {
         this.mesh.position = new Vector3(-pos.x, pos.y, 0);
       } else { // rightToLeft
@@ -126,21 +128,6 @@ export class MotherShip {
       }
       if (i > Math.PI) {
         this.gameAssets.sounds.motherShip.stop();
-        this.deactivate();
-        this.mesh.metadata.silentDispose = true;
-        this.mesh.dispose();
-      }
-    });
-  }
-
-  startLoop() {
-    let i = 0;
-    this.mothershipLoop = this.scene.onBeforeRenderObservable.add(() => {
-      i += State.delta / 10;
-      //this.mesh.rotate(new Vector3(0, 1, 0), this.mesh.rotation.y + (spaceinvadersConfig.motherShip.rotateSpeed * State.delta));
-      this.mesh.rotate(Axis.Y, this.mesh.rotation.y + (spaceinvadersConfig.motherShip.rotateSpeed * State.delta), Space.LOCAL);
-      this.mesh.moveWithCollisions(new Vector3(this.velocity * State.delta, 0, 0));
-      if (this.mesh.position.x > 100) {
         this.deactivate();
         this.mesh.metadata.silentDispose = true;
         this.mesh.dispose();
