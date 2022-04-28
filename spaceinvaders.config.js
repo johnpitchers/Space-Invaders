@@ -1,6 +1,6 @@
 export default {
   actionCam: false, // This value is changed dynamically in the code based on the users selected mode.
-  orthographicCam: true,
+  orthographicCam: false,
   light: {
     intensity: 1.5
   },
