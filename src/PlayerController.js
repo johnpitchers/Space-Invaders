@@ -30,6 +30,7 @@ export class PlayerController {
     this.playerMesh.onDispose = (mesh) => {
       if (State.state === "GAMELOOP" || State.state === "ALIENSWIN") {
         this.playerHit(mesh);
+        this.scene.onBeforeRenderObservable.remove(this.playerObserver);
       }
     };
     this.playerMesh.checkCollisions = false;
@@ -37,6 +38,9 @@ export class PlayerController {
     this.playerMesh.collisionMask = 1;
     this.setInvicibility(true, 3000);
     this.enableMovement();
+    this.playerObserver = this.scene.onBeforeRenderObservable.add(()=>{
+      this.playerMove();
+    });
   }
 
   actionCam(x = -1) {
@@ -140,15 +144,17 @@ export class PlayerController {
       }
     }
     let input = this.inputController.inputMap;
-    if (input.arrowleft || input.a || this.mobileInputs.left) {
-      this.playerMoveLeft(State.delta);
+    if (this.movementEnabled) {
+      if (input.arrowleft || input.a || this.mobileInputs.left) {
+        this.playerMoveLeft(State.delta);
+      }
+      if (input.arrowright || input.d || this.mobileInputs.right) {
+        this.playerMoveRight(State.delta);
+      }
     }
-    if (input.arrowright || input.d || this.mobileInputs.right) {
-      this.playerMoveRight(State.delta);
-    }
-    if (input.shift || input.enter|| input.space || this.mobileInputs.fire ) {
+    if (input.shift || input.enter || input.space || this.mobileInputs.fire) {
       if (!this.fireKeyDown && this.bullets.length < this.maxBullets && this.movementEnabled) {
-        this.bullets.push(new PlayerBullet(this.gameAssets,this.scene, this.playerMesh));
+        this.bullets.push(new PlayerBullet(this.gameAssets, this.scene, this.playerMesh));
         this.gameAssets.sounds.lazer.play();
         this.fireKeyDown = true;
       }
@@ -170,10 +176,8 @@ export class PlayerController {
   //  Approx 30% fast at 24FPS than at 60.
   //  Need to work on delta calculations.
   playerMove() {
-    if (this.movementEnabled) {
-      this.playerMesh.position.x += this.momentum * (State.delta);
-      this.momentum /= Math.pow(1.4, State.delta);
-      this.playerMesh.rotation = new Vector3(0, this.momentum, this.momentum / 4);
-    }
+    this.playerMesh.position.x += this.momentum * (State.delta);
+    this.momentum /= Math.pow(1.4, State.delta);
+    this.playerMesh.rotation = new Vector3(0, this.momentum, this.momentum / 4);
   }
 }
