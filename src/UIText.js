@@ -8,8 +8,8 @@ export class UIText {
     'You start with a number of lives but if invaders get past you, it\'s game over.',
     'By 1982, Space Invaders was the highest-grossing entertainment product at the time.',
     'Alien formations get stronger, larger and more aggressive with each level.',
-    'British Newspaper, The Times, ranked Space Invaders No. 1 on its list of "The ten most influential video games ever"',
-    'Destory motherships for a huge score bonus.',
+    'British paper, The Times, ranked Space Invaders No. 1 on its list of "The ten most influential video games ever".',
+    'Destroy motherships for a huge score bonus.',
   ]
 
   constructor() {
