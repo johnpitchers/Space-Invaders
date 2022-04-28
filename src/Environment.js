@@ -1,4 +1,4 @@
-import {Color3, GlowLayer, HemisphericLight, Scalar, Scene, UniversalCamera, Vector3} from "@babylonjs/core";
+import {Camera, Color3, GlowLayer, HemisphericLight, Scalar, Scene, UniversalCamera, Vector3} from "@babylonjs/core";
 import spaceinvadersConfig from "../spaceinvaders.config";
 
 export class Environment {
@@ -74,6 +74,17 @@ export class Environment {
       camera = new UniversalCamera("camera", new Vector3(0, -60, -60), this.scene);
     } else {
       camera = new UniversalCamera("camera", new Vector3(0, 50, -150), this.scene);
+    }
+    if (spaceinvadersConfig.orthographicCam) {
+      let orthoSize = 60;
+      camera.mode = Camera.ORTHOGRAPHIC_CAMERA;
+      camera.width = this.engine.getRenderWidth();
+      camera.height = this.engine.getRenderHeight();
+      camera.ratio = camera.width / camera.height;
+      camera.orthoLeft = camera.ratio * -orthoSize;
+      camera.orthoRight = camera.ratio * orthoSize;
+      camera.orthoTop = orthoSize;
+      camera.orthoBottom = -orthoSize;
     }
     camera.setTarget(new Vector3(0, 50, 0));
     return camera;

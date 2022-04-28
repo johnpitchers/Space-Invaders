@@ -26,7 +26,8 @@ export class MotherShip {
     this.mesh.metadata = {
       type: "mothership",
       scoreValue: 1000,
-      lives: this.hitsToKill
+      lives: this.hitsToKill,
+      rotation: 0
     }
     this.mesh.onDispose = (mesh) => {
       if (this.mesh.metadata.silentDispose === undefined) {
@@ -113,12 +114,19 @@ export class MotherShip {
     let i = 0;
     this.mothershipLoop = this.scene.onBeforeRenderObservable.add(() => {
       i += (this.velocity / 250) * State.delta;
-      this.mesh.rotate(Axis.Y, this.mesh.rotation.y + (spaceinvadersConfig.motherShip.rotateSpeed * State.delta), Space.LOCAL);
+      if (spaceinvadersConfig.orthographicCam) {
+        // this.mesh.metadata.rotation += (spaceinvadersConfig.motherShip.rotateSpeed * State.delta);
+        // if (Math.floor((this.mesh.metadata.rotation*100) % 3 ) === 0) {
+        //   this.mesh.rotate(Axis.Y, Math.PI / 4, Space.LOCAL);
+        // }
+      } else {
+        this.mesh.rotate(Axis.Y, this.mesh.rotation.y + (spaceinvadersConfig.motherShip.rotateSpeed * State.delta), Space.LOCAL);
+      }
       let pos = {
         x: center.x + Math.cos(i) * radius.x,
         y: center.y - Math.sin(i) * radius.y
       }
-      if (State.state ==="CLEARLEVEL"){
+      if (State.state === "CLEARLEVEL") {
         pos.y = this.mesh.position.y;
       }
       if (direction === "leftToRight") {

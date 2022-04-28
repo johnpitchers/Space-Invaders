@@ -1,10 +1,11 @@
 export default {
   actionCam: false, // This value is changed dynamically in the code based on the users selected mode.
+  orthographicCam: true,
   light: {
     intensity: 1.5
   },
   motherShip: {
-    interval: 20, //seconds
+    interval: 1, //seconds
     rotateSpeed: 0.1,
     velocity: 1,
     fireRate: 5,

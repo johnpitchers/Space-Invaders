@@ -1,5 +1,6 @@
 import {Color4, MeshBuilder, Space, Vector3} from "@babylonjs/core";
 import State from "./State";
+import spaceinvadersConfig from "../spaceinvaders.config";
 
 export class Explosion {
 
@@ -45,7 +46,9 @@ export class Explosion {
     // Rotate it in a random direction and move
     // it out. Move out distance is based on
     // the number of particles and velocity.
-    particle.mesh.rotation = new Vector3(Math.random() * Math.PI * 2, Math.random() * Math.PI * 2, Math.random() * Math.PI * 2);
+    if (!spaceinvadersConfig.orthographicCam) {
+      particle.mesh.rotation = new Vector3(Math.random() * Math.PI * 2, Math.random() * Math.PI * 2, Math.random() * Math.PI * 2);
+    }
     particle.mesh.translate(particle.movementVector, particle.velocity * this.numParticles / 1.5, Space.WORLD);
     particle.loopFunction = particle.mesh.onBeforeRenderObservable.add(() => {
       this.move(particle);
@@ -69,7 +72,9 @@ export class Explosion {
       delete this.particles[particle.id];
     } else {
       particle.mesh.translate(particle.movementVector, particle.velocity, Space.WORLD);
-      particle.mesh.rotate(particle.rotationVector, particle.rotationVelocity);
+      if (!spaceinvadersConfig.orthographicCam) {
+        particle.mesh.rotate(particle.rotationVector, particle.rotationVelocity);
+      }
     }
   }
 }

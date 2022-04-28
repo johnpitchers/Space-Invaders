@@ -50,9 +50,11 @@ export class PlayerBullet {
     if (this.bullet.collider.collidedMesh.metadata?.lives > 0) {
       this.bullet.collider.collidedMesh.metadata.lives -= 1;
 
-      this.bullet.collider.collidedMesh.rotate(Axis.Z, Scalar.RandomRange(-0.1, 0.1), Space.LOCAL);
-      this.bullet.collider.collidedMesh.rotate(Axis.X, Scalar.RandomRange(-0.3, 0.3), Space.LOCAL);
-
+      if (spaceinvadersConfig.orthographicCam) {
+        this.bullet.collider.collidedMesh.rotate(Axis.Z, Scalar.RandomRange(-0.25, 0.25), Space.LOCAL);
+      } else {
+        this.bullet.collider.collidedMesh.rotate(Axis.X, Scalar.RandomRange(-0.3, 0.3), Space.LOCAL);
+      }
       new Explosion(this.bullet, 10, 1, this.scene);
       this.destroyBullet();
       this.gameAssets.sounds.alienExplosion.play(0, 0.15, 1);
