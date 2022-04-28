@@ -83,12 +83,15 @@ export class AlienFormationController {
         if (rc < 2) {
           alien = new Alien(this.scene, alien1);
           alien.mesh.metadata.lives = this.levelParams.alien1Lives ?? 0;
+          alien.mesh.metadata.scoreValue = 10;
         } else if (rc < 4) {
           alien = new Alien(this.scene, alien2);
           alien.mesh.metadata.lives = this.levelParams.alien2Lives ?? 0;
+          alien.mesh.metadata.scoreValue = 20;
         } else {
           alien = new Alien(this.scene, alien3);
           alien.mesh.metadata.lives = this.levelParams.alien3Lives ?? 0;
+          alien.mesh.metadata.scoreValue = 30;
         }
 
 
