@@ -25,7 +25,8 @@ export class Explosion {
     let color = new Color4(1, 1, Math.random(), 1);
     let minSize = this.maxSize * 0.33;
     let mesh = MeshBuilder.CreateBox("ExplosionParticle" + id, {
-      size: Math.random() * (this.maxSize - minSize) + minSize,
+      //size: Math.random() * (this.maxSize - minSize) + minSize,
+      size: this.maxSize/1.5,
       faceColors: [color, color, color, color, color, color]
     }, this.scene);
 

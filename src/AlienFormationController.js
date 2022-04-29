@@ -94,14 +94,8 @@ export class AlienFormationController {
           alien.mesh.metadata.scoreValue = 30;
         }
 
-
-        //alien.mesh.metadata.lives = 3;
         // Scaling
         alien.mesh.scaling = new Vector3(1.7 - (rc * 0.14), 1.7 - (rc * 0.14), 4 - (rc * 0.14));
-
-        // Random rotation;
-        //alien.mesh.rotate(Axis.Z, Scalar.RandomRange(-0.1, 0.1), Space.LOCAL);
-        //alien.mesh.rotate(Axis.X, Scalar.RandomRange(-0.3, 0.3), Space.LOCAL);
 
         alien.x = x;
         alien.y = y;
