@@ -1,5 +1,6 @@
 import {Camera, Color3, GlowLayer, HemisphericLight, Scalar, Scene, UniversalCamera, Vector3} from "@babylonjs/core";
 import spaceinvadersConfig from "../spaceinvaders.config";
+import State from "./State";
 
 export class Environment {
 
@@ -47,8 +48,8 @@ export class Environment {
     this.scene.fogStart = 200;
     this.scene.fogEnd = 400;
     if (spaceinvadersConfig.actionCam) {
-      this.scene.fogStart = 160;
-      this.scene.fogEnd = 200;
+      this.scene.fogStart = 120;
+      this.scene.fogEnd = 150;
     }
     this.scene.fogDensity = 0.1;
   }
@@ -61,17 +62,16 @@ export class Environment {
 
   actionCam(x) {
     if (spaceinvadersConfig.actionCam) {
-      x = x / 2;
-      this.camera.position.x = Scalar.Lerp(this.camera.position.x, x * 1.5, 0.05);
-      this.camera.position.z = Scalar.Lerp(this.camera.position.z, -60 + (Math.abs(x / 4)), 0.05);
-      this.camera.rotation.y = Scalar.Lerp(this.camera.rotation.y, -this.camera.position.x / 300, 0.05);
+      this.camera.position.x = Scalar.Lerp(this.camera.position.x, x, 0.1 * State.delta);
+      this.camera.rotation.y = Scalar.Lerp(this.camera.rotation.y, -this.camera.position.x / 300, 0.05 * State.delta);
     }
   }
 
   CreateCamera() {
     let camera;
     if (spaceinvadersConfig.actionCam) {
-      camera = new UniversalCamera("camera", new Vector3(0, -60, -60), this.scene);
+      //camera = new UniversalCamera("camera", new Vector3(0, -60, -60), this.scene);
+      camera = new UniversalCamera("camera", new Vector3(0, -35, -22), this.scene);
     } else {
       camera = new UniversalCamera("camera", new Vector3(0, 50, -150), this.scene);
     }
@@ -84,14 +84,18 @@ export class Environment {
 
       // resize on canvas resize
       this.engine.onResizeObservable.add(() => {
-        this.setOrthographicRatio(camera,orthoSize);
+        this.setOrthographicRatio(camera, orthoSize);
       });
     }
-    camera.setTarget(new Vector3(0, 50, 0));
+    if (spaceinvadersConfig.actionCam) {
+      camera.setTarget(new Vector3(0, 30, 0));
+    } else {
+      camera.setTarget(new Vector3(0, 50, 0));
+    }
     return camera;
   }
 
-  setOrthographicRatio(camera, orthoSize){
+  setOrthographicRatio(camera, orthoSize) {
     camera.width = this.engine.getRenderWidth();
     camera.height = this.engine.getRenderHeight();
     camera.ratio = camera.width / camera.height;
