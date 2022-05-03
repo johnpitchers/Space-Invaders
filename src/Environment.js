@@ -48,8 +48,8 @@ export class Environment {
     this.scene.fogStart = 200;
     this.scene.fogEnd = 400;
     if (spaceinvadersConfig.actionCam) {
-      this.scene.fogStart = 120;
-      this.scene.fogEnd = 150;
+      this.scene.fogStart = 140;
+      this.scene.fogEnd = 160;
     }
     this.scene.fogDensity = 0.1;
   }

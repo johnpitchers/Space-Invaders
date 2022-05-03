@@ -4,7 +4,7 @@ export default {
     intensity: 1.5
   },
   motherShip: {
-    interval: 25, //seconds
+    interval: 20, //seconds
     rotateSpeed: 0.1,
     velocity: 0.75,
     fireRate: 5,
@@ -23,5 +23,5 @@ export default {
     ratioOfBlinkingStars: 0.3,
   },
   startingLevel: 0, // Starting level -1;
-  startingLives: 3,
+  startingLives: 2,
 }
