@@ -1,5 +1,5 @@
-//@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bebas+Neue&family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+//@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bebas+Neue&family=Press+Start+2P&display=swap');
 
 $scanlines: repeating-linear-gradient(
                 0deg,
@@ -369,3 +369,6 @@ canvas {
   }
 }
 
+.small {
+  font-size: 0.75em;
+}
